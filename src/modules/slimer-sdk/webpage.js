@@ -1535,8 +1535,6 @@ function _create(parentWebpageInfo) {
 
         onAuthPrompt: null,
 
-        onCallback : null,
-
         onConfirm : null,
 
         onConsoleMessage : null,

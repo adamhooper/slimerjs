@@ -234,7 +234,6 @@ It will contain API that does not exists in PhantomJS.
 <table>
     <tr><td>onAlert                             </td><td>Implemented</td></tr>
     <tr><td>onAuthPrompt                        </td><td>Implemented (SlimerJS only)</td></tr>
-    <tr><td>onCallback                          </td><td>Implemented</td></tr>
     <tr><td>onClosing                           </td><td>Implemented</td></tr>
     <tr><td>onConfirm                           </td><td>Implemented</td></tr>
     <tr><td>onConsoleMessage                    </td><td>Implemented (SlimerJS only: the callback receives the lineNumber and the sourceID, contrary to PhantomJS)</td></tr>

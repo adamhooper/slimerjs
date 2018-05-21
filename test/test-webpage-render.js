@@ -116,23 +116,6 @@ describe("WebPage.render()", function(){
         }
     });
 
-    it(" has nothing to test, prepare the results",function() {
-        var loaded = false;
-        runs(function() {
-            expectedFixPage.open(expectedFixUrl, function(success){
-                loaded = true;
-            });
-        });
-
-        waitsFor(function(){ return loaded;}, 1000);
-        runs(function(){
-            expectedFixPage.onCallback = function() {
-                imageResultLoaded = true;
-            }
-            expectedFixPage.evaluate(function(){ fillCanvas(); })
-        });
-    });
-
     it("can capture and save it into a file",function() {
         var loaded = false;
         runs(function() {
@@ -278,29 +261,6 @@ describe("WebPage.render()", function(){
 
     it(" capture an entire page with fix design + onlyViewport + zoom out + scroll (15)",function() {
         doAndTestRendering(15, 0.5, true, {top:25, left:25});
-    });
-
-    it(" has nothing to test, prepare the results for adaptive page",function() {
-        url = urlbase+"render_adaptive.html";
-        expectedFixUrl = urlbase+ "rendering/rendering_adaptive.html";
-        prefixResult = 'slimerjs_capture_adapt_';
-        setViewport = { width:300, height:500 };
-
-        var loaded = false;
-        runs(function() {
-            
-            expectedFixPage.open(expectedFixUrl, function(success){
-                loaded = true;
-            });
-        });
-
-        waitsFor(function(){ return loaded;}, 1000);
-        runs(function(){
-            expectedFixPage.onCallback = function() {
-                imageResultLoaded = true;
-            }
-            expectedFixPage.evaluate(function(){ fillCanvas(); })
-        });
     });
 
     it(" capture an entire page with adaptive design (1)",function() {

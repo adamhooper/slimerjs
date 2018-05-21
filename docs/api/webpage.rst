@@ -97,7 +97,6 @@ Content management:
 
 :ref:`onAlert <webpage-onAlert>`,
 :ref:`onAuthPrompt <webpage-onAuthPrompt>`,
-:ref:`onCallback <webpage-onCallback>`,
 :ref:`onConfirm <webpage-onConfirm>`,
 :ref:`onConsoleMessage <webpage-onConsoleMessage>`,
 :ref:`onFileDownload <webpage-onFileDownload>`,
@@ -1148,36 +1147,6 @@ The callback should return ``true`` if it accepts to authenticate, else
 ``false``.
 
 To know more, see  :doc:`doc about http authentication with SlimerJS <../manual/http-authentication>`.
-
-.. _webpage-onCallback:
-
-onCallback
------------------------------------------
-
-Sometimes, you may need to pass values from the web page to the webpage object, at any time,
-not only when you have to evaluate javascript code inside the web page.
-
-From a script of the web page, you should then call the ``window.callPhantom()``
-function, exposed by SlimerJs to the document. You can pass one argument to this function.
-This argument is then passed to the function you set on ``webpage.onCallback``. This
-callback can return a value which is then the returned value of ``window.callPhantom()``.
-
-In your SlimerJS script:
-
-.. code-block:: javascript
-
-    page.onCallback = function(arg) {
-        return arg + " world";
-    }
-
-In your web page:
-
-.. code-block:: html
-
-    <script>
-      var returnedValue = window.callPhantom("hello");
-      // returnedValue == "hello world"
-    </script>
 
 .. _webpage-onClosing:
 
