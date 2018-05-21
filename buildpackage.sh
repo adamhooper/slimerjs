@@ -28,12 +28,10 @@ cp slimerjs.py $TARGETDIR
 cp LICENSE $TARGETDIR
 cp README.md $TARGETDIR
 cp slimerjs-node $TARGETDIR
-cp phantom-protocol.js $TARGETDIR
 
 
 mkdir -p $TARGETDIR/chrome/
 cp -a chrome/icons $TARGETDIR/chrome/
-cp -a vendors $TARGETDIR/
 
 # zip chrome files into omni.ja
 zip -r $TARGETDIR/omni.ja chrome/ components/ defaults/ modules/ chrome.manifest --exclude @package_exclude.lst

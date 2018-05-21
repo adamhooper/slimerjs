@@ -92,71 +92,6 @@ var helloScriptHandler = {
 }
 
 
-
-// Script handler for GhostDriver
-var webDriverScriptHandler = {
-    name : 'webDriverScriptHandler',
-    _getDir : function() {
-        var appDir = Services.dirsvc.get("CurProcD", Components.interfaces.nsIFile);
-        appDir.append('vendors');
-        appDir.append('ghostdriver');
-        return appDir;
-    },
-    setOptionsSpecInto : function(currentOptionSpec) {
-
-        slConfiguration.baseURIStrictCommonJS.push(this._getDir().path);
-
-        function parse_webdriver(val, cmdlineOpt) {
-            let pos = val.lastIndexOf(':');
-            if ( pos > 0) {
-                slConfiguration.webdriverIp = val.substring(0, pos);
-                slConfiguration.webdriverPort = val.substring(pos+1);
-            }
-            else {
-                slConfiguration.webdriverPort = val;
-            }
-            return val;
-        }
-        //currentOptionSpec.webdriverEngine = ['webdriver-engine', '', null, true];
-        currentOptionSpec.webdriver = [['webdriver', 'wd','w'], parse_webdriver, '', true];
-        currentOptionSpec.webdriverIp = ['', '', '127.0.0.1', true];
-        currentOptionSpec.webdriverPort = ['', '', '8910', true];
-        currentOptionSpec.webdriverLogFile = ['webdriver-logfile', 'file', '', true];
-        currentOptionSpec.webdriverLogLevel = ['webdriver-loglevel',
-                function (val, cmdlineOpt) {
-                    if (!(val == 'ERROR' || val == 'WARN' || val=='INFO' || val == 'DEBUG')) {
-                        throw new Error("Invalid value for '"+cmdlineOpt+"' option. It should be ERROR, WARN, INFO or DEBUG");
-                    }
-                    return val;
-                }, 'INFO', true];
-        currentOptionSpec.webdriverSeleniumGridHub = ['webdriver-selenium-grid-hub', 'url', '', true];
-    },
-    isHandledMainScript : function() {
-        return (slConfiguration.webdriver != '');
-    },
-    declareScript : function(cmdLine) {
-        slConfiguration.scriptFile = this._getDir();
-        slConfiguration.scriptFile.append('main.js');
-        slConfiguration.mainScriptURI = Services.io.newFileURI(slConfiguration.scriptFile);
-        slConfiguration.args.unshift(slConfiguration.mainScriptURI.spec);
-
-        slConfiguration.args.push("--ip="+slConfiguration.webdriverIp);
-        slConfiguration.args.push("--port="+slConfiguration.webdriverPort);
-
-        if (slConfiguration.webdriverSeleniumGridHub) {
-            slConfiguration.args.push("--hub="+slConfiguration.webdriverSeleniumGridHub);
-        }
-
-        if (slConfiguration.webdriverLogFile) {
-            slConfiguration.args.push("--logFile="+slConfiguration.webdriverLogFile);
-            slConfiguration.args.push("--logColor=false");
-        }
-
-        slConfiguration.args.push("--logLevel="+slConfiguration.webdriverLogLevel);
-    }
-}
-
-
 /**
  * The main command line handler of SlimerJS
  */
@@ -173,7 +108,6 @@ slCommandLine.prototype = {
      * known script handlers
      */
     _scriptHandlers : [
-        webDriverScriptHandler,
         //helloScriptHandler,
         externalScriptHandler // should be always the last one
     ],

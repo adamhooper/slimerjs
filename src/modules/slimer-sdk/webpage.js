@@ -8,7 +8,6 @@ Cu.import('resource://slimerjs/slLauncher.jsm');
 Cu.import('resource://slimerjs/slUtils.jsm');
 Cu.import('resource://slimerjs/slConsole.jsm');
 Cu.import('resource://slimerjs/slConfiguration.jsm');
-Cu.import('resource://slimerjs/slimer-sdk/phantom.jsm');
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import('resource://slimerjs/slPhantomJSKeyCode.jsm');
@@ -1295,7 +1294,7 @@ function _create(parentWebpageInfo) {
             stopJavaScript.__interrupt__ = true;
         },
         
-        onError : phantom.defaultErrorHandler,
+        onError : slLauncher.defaultErrorHandler,
 
         // --------------------------------- content manipulation
 

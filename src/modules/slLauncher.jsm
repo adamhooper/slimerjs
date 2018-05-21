@@ -137,7 +137,6 @@ var slLauncher = {
         this.errorHandler(msg, stackRes);
     },
 
-    // can be changed by the phantom module
     errorHandler : function(msg, stack) {
         this.defaultErrorHandler(msg, stack)
     },
@@ -448,7 +447,6 @@ function prepareLoader(scriptInfo) {
 
             // let's define some object available in the sandbox
             Cu.import('resource://slimerjs/slimer-sdk/slimer.jsm', sandbox);
-            Cu.import('resource://slimerjs/slimer-sdk/phantom.jsm', sandbox);
 
             let properties = {};
             fillDescriptor(globalProperties, properties)

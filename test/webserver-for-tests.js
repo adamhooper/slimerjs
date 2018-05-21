@@ -174,22 +174,6 @@ webserverTest.listen(8083, function(request, response) {
         return;
     }
 
-    if (/^\/downloadzipfile/.test(request.url)) {
-        let content = fs.read(phantom.libraryPath+'/www/example.zip', "b");
-        response.statusCode = 200;
-        let headers = { "Content-Type": "application/zip"}
-        headers['Content-Length'] = content.length;
-        if (request.url == '/downloadzipfile?dispo') {
-            headers['Content-Disposition'] = 'attachment; filename="super.zip"';
-            headers['Content-Description'] = 'File download';
-            headers['Content-Transfer-Encoding'] = 'binary';
-        }
-        response.headers = headers;
-        response.write(content);
-        response.close();
-        return;
-    }
-
     var filepath = phantom.libraryPath+'/www'+request.url;
     if (fs.exists(filepath)){
         if (fs.isFile(filepath)) {
