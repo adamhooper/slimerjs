@@ -36,8 +36,6 @@ Modules
    :maxdepth: 1
 
    api/webpage
-   api/system
-   api/webserver
    api/fs
    api/js-standard
 

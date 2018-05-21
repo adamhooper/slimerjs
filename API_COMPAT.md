@@ -375,59 +375,6 @@ are part of the CommonJS FileSystem specification
     <tr><td>setEncoding(encoding)               </td><td>Implemented (phjs 2.0)</td></tr>
 </table>
 
-# Module: webserver
-
-<table>
-    <tr><td>create()                            </td><td>Implemented</td></tr>
-</table>
-
-# WebServer object
-
-<table>
-    <tr><td>port                        </td><td>Implemented</td></tr>
-    <tr><td>close()                        </td><td>Implemented</td></tr>
-    <tr><td>listenOnPort(port, options)                        </td><td></td></tr>
-    <tr><td>listen(port, callback) </td><td>Implemented. The callback is called for every
-                                            http request. Don't give it if you use one of
-                                            register* methods (it calls
-                                            <code>registerPrefixHandler("/",
-                                            callback);</code>)</td></tr>
-    <tr><td>listen(port, options, callback) </td><td>This form of call is recognized but
-                                            options are ignored in SlimerJS</td></tr>
-    <tr><td>onNewRequest                </td><td></td></tr>
-    <tr><td>registerFile(path, filePath)        </td><td>Implemented (SlimerJS only). Maps the given path to a file.</td></tr>
-    <tr><td>registerDirectory(path, directoryPath)</td><td>Implemented (SlimerJS only). Maps a path to a dir (directoryPath)</td></tr>
-    <tr><td>registerPathHandler(path, callback) </td><td>Implemented (SlimerJS only). Register a callback that will be called when an HTTP client request the given path.</td></tr>
-    <tr><td>registerPrefixHandler(prefixPath, callback)</td><td>Implemented (SlimerJS only). Register a callback that will be called when an HTTP client request a path starting with prefixPath.</td></tr>
-</table>
-
-## request object
-
-<table>
-    <tr><td>method                              </td><td>Implemented</td></tr>
-    <tr><td>url                                 </td><td>Implemented</td></tr>
-    <tr><td>httpVersion                         </td><td>Implemented</td></tr>
-    <tr><td>headers                             </td><td>Implemented</td></tr>
-    <tr><td>post                                </td><td>Implemented</td></tr>
-    <tr><td>postRaw                             </td><td>Implemented</td></tr>
-    <tr><td>path                                </td><td>Implemented (SlimerJS only). Contains the path part of the URL (Readonly)</td></tr>
-    <tr><td>queryString                         </td><td>Implemented (SlimerJS only). Contains the query part of the URL (Readonly)</td></tr>
-</table>
-
-## response object
-
-<table>
-    <tr><td>headers                             </td><td>Implemented</td></tr>
-    <tr><td>header(name)                        </td><td>Implemented</td></tr>
-    <tr><td>setHeader(name, value)              </td><td>Implemented</td></tr>
-    <tr><td>setEncoding(encoding)               </td><td>Implemented</td></tr>
-    <tr><td>statusCode                          </td><td>Implemented</td></tr>
-    <tr><td>write(data)                         </td><td>Implemented</td></tr>
-    <tr><td>writeHead(statusCode, headers)      </td><td>Implemented</td></tr>
-    <tr><td>close()                             </td><td>Implemented</td></tr>
-    <tr><td>closeGracefully()                   </td><td>Implemented</td></tr>
-</table>
-
 
 # Module: child_process
 

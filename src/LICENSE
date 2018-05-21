@@ -10,7 +10,6 @@ their authors under the licenses listed alongside.
     http://mxr.mozilla.org/mozilla-central/source/toolkit/addon-sdk/
     https://github.com/laurentj/addon-sdk/tree/master/lib/sdk/io
 
-* components/httpd.js
 * modules/httpUtils.jsm
     is released under the Mozilla Public License, v. 2.0
     see http://mozilla.org/MPL/2.0/

@@ -14,7 +14,5 @@ category command-line-handler m-slimerjscli @mozilla.org/commandlinehandler/gene
 component {b0836913-f33f-4935-96af-235891cd5815} components/DisabledTelemetryStartup.js
 contract @mozilla.org/base/telemetry-startup;1 {b0836913-f33f-4935-96af-235891cd5815}
 
-manifest components/httpd.manifest
-
 content branding chrome/branding/content/
 locale branding en-US chrome/branding/locale/

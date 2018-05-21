@@ -64,9 +64,9 @@ the module name in parameter, and returns an object.
 The result of require, here stored into ``webpageModule``, is an object that have all
 exported functions of the module.
 
-SlimerJS has modules almost identical to those provided by PhantomJS (webpage, fs,
-webserver, system) but it has also many other modules from the Mozilla Addons SDK
-which is included into the SlimerJS package.
+SlimerJS has modules almost identical to those provided by PhantomJS (webpage, fs)
+but it has also many other modules from the Mozilla Addons SDK which is included
+into the SlimerJS package.
 
 Opening a web page
 ------------------
