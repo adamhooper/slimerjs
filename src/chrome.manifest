@@ -10,9 +10,6 @@ component {fe06cc0a-53d5-4004-a5af-c23b4d2e327d} components/ConsoleAPI.js platfo
 contract @mozilla.org/console-api;1 {fe06cc0a-53d5-4004-a5af-c23b4d2e327d} platformversion<30
 category JavaScript-global-property console @mozilla.org/console-api;1 platformversion<30
 
-component {04c5992d-c6a5-4138-9b75-b03ead2be0f1} components/helperAppDialog.js
-contract @mozilla.org/helperapplauncherdialog;1 {04c5992d-c6a5-4138-9b75-b03ead2be0f1}
-
 # Disable addons. Not activated yet...
 #component {ed6e7c79-fcd3-4285-881e-f0cbb0d8ada0} components/DisabledAddonManager.js
 #contract @mozilla.org/addons/integration;1 {ed6e7c79-fcd3-4285-881e-f0cbb0d8ada0}
