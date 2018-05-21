@@ -72,8 +72,6 @@ else {
     phantom.injectJs("./test-webpage-navigation.js");
     phantom.injectJs("./test-webpage-headers.js");
     phantom.injectJs("./test-webpage-filepicker.js");
-    phantom.injectJs("./test-phantom-cookies.js");
-    phantom.injectJs("./test-webpage-cookies.js");
     phantom.injectJs("./test-webpage-httpauth.js");
     phantom.injectJs("./test-webpage-request-abort.js");
     phantom.injectJs("./test-webpage-longrunningscript.js");

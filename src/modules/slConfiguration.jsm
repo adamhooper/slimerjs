@@ -40,7 +40,6 @@ var optionsSpec = {
     // name: [ 'cmdline option name', 'parser function name', 'default value',  supported],
     allowMedia: ['allow-media', 'bool', true, true],
     errorLogFile: ['error-log-file', 'file', '', true],
-    cookiesFile : ['cookies-file', 'file', '', false],
     diskCacheEnabled : ['disk-cache', 'bool', true, true],
     maxDiskCacheSize : ['max-disk-cache-size', 'int', -1, true],
     ignoreSslErrors : ['ignore-ssl-errors', 'bool', false, false],
@@ -467,7 +466,6 @@ var slConfiguration = {
 
     allowMedia: true,
     errorLogFile : '',
-    cookiesFile : '',
     diskCacheEnabled : true,
     maxDiskCacheSize : -1,
     ignoreSslErrors : false,

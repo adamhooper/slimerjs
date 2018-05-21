@@ -31,7 +31,6 @@ note also that the command line parsing is done by Firefox, not by SlimerJS.
 PhantomJS options
 ====================================================  ===================  ====================================================
 ``--config=/path/to/config.json``                     Supported (0.9)      indicate a config file
-``--cookies-file=/path/to/cookies.txt``               N/A. see profiles
 ``--debug=[yes|no|true|false]``                       supported            Displays debug messages. Supports also other values
 ``--disk-cache=[yes|no|true|false]``                  Supported (0.9)      Enable the disk cache or not. By default: disabled
 ``--help`` or ``-h``                                  Supported            Displays help about options

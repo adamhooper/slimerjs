@@ -11,7 +11,6 @@ Cu.import('resource://slimerjs/slConfiguration.jsm');
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import('resource://slimerjs/webpageUtils.jsm');
-Cu.import('resource://slimerjs/slCookiesManager.jsm');
 Cu.import('resource://slimerjs/slDebug.jsm');
 
 
@@ -548,63 +547,12 @@ function _create(parentWebpageInfo) {
          */
         captureContent : [],
 
-        // ------------------------ cookies and headers
+        // ------------------------ headers
 
         /**
          * list of headers to set on every request for the webpage
          */
         customHeaders : {},
-
-        /**
-         * retrieve the list of cookies of the domain of the current url
-         * @return cookie[]
-         */
-        get cookies() {
-            if (!browser || browserJustCreated || !browser.currentURI)
-                return [];
-            return slCookiesManager.getCookiesForUri(browser.currentURI);
-        },
-
-        /**
-         * set a list of cookies for the domain of the web page
-         * @param cookie[] val
-         */
-        set cookies(val) {
-            if (!browser || browserJustCreated)
-                return;
-            slCookiesManager.setCookies(val, browser.currentURI);
-        },
-
-        /**
-         * add a cookie in the cookie manager for the current url
-         * @param cookie cookie
-         * @return boolean true if the cookie has been set
-         */
-        addCookie: function(cookie) {
-            if (!browser || browserJustCreated)
-                return false;
-            return slCookiesManager.addCookie(cookie, browser.currentURI);
-        },
-
-        /**
-         * erase all cookies of the current domain
-         */
-        clearCookies: function() {
-            if (browser && !browserJustCreated)
-                slCookiesManager.clearCookies(browser.currentURI);
-        },
-
-        /**
-         * delete all cookies that have the given name
-         * on the current domain
-         * @param string cookieName  the cookie name
-         * @return boolean true if deletion is ok
-         */
-        deleteCookie: function(cookieName) {
-            if (!browser || browserJustCreated)
-                return false;
-            return slCookiesManager.deleteCookie(cookieName, browser.currentURI);
-        },
 
         // -------------------------------- History
 

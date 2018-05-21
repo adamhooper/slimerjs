@@ -4,7 +4,7 @@
  */
 "use strict";
 var EXPORTED_SYMBOLS = ["DEBUG", "DEBUG_CONFIG", "DEBUG_CLI", "DEBUG_WEBPAGE",
-                        "DEBUG_FILES", "DEBUG_COOKIES", "DEBUG_WEBPAGE_LOADING",
+                        "DEBUG_FILES", "DEBUG_WEBPAGE_LOADING",
                         "DEBUG_NETWORK_PROGRESS", "slDebugInit", "slDebugLog",
                         "slDebugGetObject"];
 
@@ -16,7 +16,6 @@ const Cu = Components.utils;
 var DEBUG_CONFIG = false;
 var DEBUG_CLI = false;
 var DEBUG_FILES = false;
-var DEBUG_COOKIES = false;
 var DEBUG_WEBPAGE = false;
 var DEBUG_WEBPAGE_LOADING = false; // network listeners in webpage
 var DEBUG_NETWORK_PROGRESS = false; // low level network listeners (in net-log.js)
@@ -27,7 +26,6 @@ const debugKeywords = {
     'config': 'DEBUG_CONFIG',
     'cli':'DEBUG_CLI',
     'files':'DEBUG_FILES',
-    'cookies':'DEBUG_COOKIES',
     'page':'DEBUG_WEBPAGE',
     'pageload':'DEBUG_WEBPAGE_LOADING',
     'netprogress': 'DEBUG_NETWORK_PROGRESS',
@@ -36,7 +34,7 @@ const debugKeywords = {
     'errors': 'DEBUG_ERRORS' // this value is checked only in the calling script to output gecko errors
 }
 
-var defaultDebug="config,cli,files,cookies,page,net,netprogress";
+var defaultDebug="config,cli,files,page,net,netprogress";
 
 var module = this;
 

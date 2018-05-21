@@ -119,16 +119,6 @@ Javascript execution:
 :ref:`onError <webpage-onError>` 
 
 
-
-
-Cookies management:
-
-:ref:`cookies <webpage-cookies>`,
-:ref:`addCookie() <webpage-addCookie>`
-
-:ref:`clearCookies() <webpage-clearCookies>`,
-:ref:`deleteCookie() <webpage-deleteCookie>`
-
 Network management:
 
 :ref:`customHeaders <webpage-customHeaders>`
@@ -224,26 +214,6 @@ This property contain the source code of the actual webpage.
 You can set this property with the source code of an HTML page
 to replace the content of the current web page.
 
-.. _webpage-cookies:
-
-cookies
------------------------------------------
-
-
-This is an array of all :doc:`Cookie objects <cookie>` stored in the current
-profile, and which corresponds to the current url of the webpage.
-
-When you set an array of Cookie to this property, cookies will be set
-for the current url: their domain and path properties will be changed.
-
-Note: modifying an object in the array won't modify the cookie. You should
-retrieve the array, modify it, and then set the ``cookies`` property with this array.
-Probably you would prefer to use the ``addCookie()`` method to modify a cookie.
-
-If cookies are disabled, or if no page is loaded, modifying this property does nothing.
-
-Be careful about `the inconsistent behavior of the expiry property <cookie.html#expires>`_.
-
 .. _webpage-customHeaders:
 
 customHeaders
@@ -277,7 +247,6 @@ To define user agent, prefer to use ``webpage.settings.userAgent``
    this website will receive all custom headers, and then **the username and password**,
    although it should not!
 
-- To set cookies, prefer to use the :ref:`cookies property <webpage-cookies>`.
 - To set http authentication username and password, prefer to use :ref:`settings <webpage-settings>`
   or better, define an ``onAuthPrompt`` callback (version 0.9+) with which you can precisely indicate
   credentials for specific hosts.
@@ -648,22 +617,6 @@ Methods
 ========
 
 
-.. _webpage-addCookie:
-
-addCookie(cookie)
------------------------------------------
-
-Add a cookie in the cookies storage of the current profile, for the
-current url. The parameter is :doc:`a Cookie object <cookie>`.
-The domain and the path of the cookie will be set to the domain
-and the path of the current url.
-
-It returns true if the cookie has been really added. If cookies are
-disabled, or if no page is loaded, the cookie is not added into the cookie database.
-
-Be careful about `the inconsistent behavior of the expiry property <cookie.html#expires>`_.
-
-
 .. _webpage-childFramesCount:
 
 childFramesCount()
@@ -682,14 +635,6 @@ childFramesName()
 Returns the list of the names of child frames of `the selected frame <../manual/frames-manipulation.html>`_.
 
 Deprecated. Use :ref:`framesName <webpage-framesName>` instead.
-
-
-.. _webpage-clearCookies:
-
-clearCookies()
------------------------------------------
-
-Delete all cookies corresponding to the current url.
 
 
 .. _webpage-close:
@@ -711,17 +656,6 @@ Returns the name of `the selected frame <../manual/frames-manipulation.html>`_.
 
 Deprecated. Use :ref:`frameName <webpage-frameName>` instead.
 
-
-.. _webpage-deleteCookie:
-
-deleteCookie(cookiename)
------------------------------------------
-
-It deletes all cookies that have the given name and corresponding
-to the current url.
-
-It returns true if some cookies have been deleted.
-It works only if cookies are enabled.
 
 .. _webpage-evaluateJavaScript:
 

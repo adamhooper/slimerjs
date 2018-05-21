@@ -72,22 +72,6 @@ webserverTest.listen(8083, function(request, response) {
         return;
     }
 
-    if (request.url == '/getCookies') {
-        response.statusCode = 200;
-        response.headers = {
-            "Content-Type": "text/plain;charset=UTF-8",
-            "Set-Cookie": "UserID=JohnDoe; Max-Age=3600;"
-        }
-        try {
-            response.write(JSON.stringify(request.headers));
-        }
-        catch(e) {
-            response.write("Error:"+e)
-        }
-        response.close();
-        return;
-    }
-
     if (request.url == '/needauth') {
         var headers = { "Content-Type": "text/plain;charset=UTF-8"}
         var message = '';

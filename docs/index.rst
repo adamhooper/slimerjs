@@ -28,9 +28,7 @@ Objects and functions available in SlimerJS
    :maxdepth: 1
 
    api/require
-   api/phantom
    api/slimer
-   api/cookie
 
 Modules
 
