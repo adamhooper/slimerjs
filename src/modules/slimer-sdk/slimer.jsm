@@ -97,18 +97,6 @@ var slimer =  {
     },
 
     /**
-     * indicates if a feature is implemented and enabled
-     * @var string featureName  supported names: 'coffeescript'
-     * @return boolean true if the feature is supported AND enabled
-     */
-    hasFeature : function (featureName) {
-        switch(featureName.toLowerCase()) {
-            case 'coffeescript': return slConfiguration.enableCoffeeScript;
-        }
-        return false;
-    },
-
-    /**
      * the execution of the script is paused during the given amount of time
      * @param integer msTime  amount of time to wait, in milliseconds
      */

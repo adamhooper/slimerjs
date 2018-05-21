@@ -84,8 +84,7 @@ var slErrorLogger = {
             let msg = aMessage.QueryInterface(Ci.nsIScriptError);
 
             // forget some messages from embedded libs
-            if (msg.sourceName.indexOf("resource://slimerjs/coffee-script/") != -1
-                || msg.sourceName.indexOf("jasmine/jasmine.js") != -1)
+            if (msg.sourceName.indexOf("jasmine/jasmine.js") != -1)
                 return;
 
             //dump(" *** slErrorLogger:"+aMessage.message+ "("+aMessage.category+")\n")

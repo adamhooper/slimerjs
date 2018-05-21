@@ -489,7 +489,6 @@ var slConfiguration = {
     javascriptCanOpenWindows : true,
     javascriptCanCloseWindows : true,
     sslCertificatesPath : null,
-    enableCoffeeScript: true,
     sslProtocol: -1,
     userAgent: defaultUA,
     viewportWidth: 400,

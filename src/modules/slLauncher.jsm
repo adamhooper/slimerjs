@@ -79,11 +79,6 @@ var mainLoader = null;
 var mainWindow = null;
 
 /**
- * the sandbox for the CoffeScript compiler
- */
-var coffeeScriptSandbox = null;
-
-/**
  * the public interface of slLauncher
  */
 var slLauncher = {
@@ -95,20 +90,6 @@ var slLauncher = {
             // autorize the main script to use navigator.mozTCPSocket  https://developer.mozilla.org/en-US/docs/WebAPI/TCP_Socket
             Services.perms.addFromPrincipal(principal, "tcp-socket", Ci.nsIPermissionManager.ALLOW_ACTION);
             // FIXME: do other authorization: video, audio, geoloc...?
-        }
-
-        if (slConfiguration.enableCoffeeScript) {
-            // prepare the sandbox to execute coffee script injected with injectJs
-            coffeeScriptSandbox = Cu.Sandbox(contentWindow,
-                                {
-                                    sandboxName: 'coffeescript',
-                                    // Firefox 40.0 and above handles sandboxPrototype different then before
-                                    sandboxPrototype: versionComparator.compare(appInfo.platformVersion, '40') < 0 ? {} : contentWindow,
-                                    wantXrays: true
-                                });
-            let src = slUtils.readChromeFile("resource://slimerjs/coffee-script/extras/coffee-script.js");
-            Cu.evalInSandbox('var CoffeeScript;', coffeeScriptSandbox, 'ECMAv5', 'slLauncher::launchMainScript', 1);
-            Cu.evalInSandbox(src, coffeeScriptSandbox, 'ECMAv5', 'coffee-scripts.js', 1);
         }
 
         // prepare the environment where the main script will be executed in
@@ -135,19 +116,8 @@ var slLauncher = {
     },
 
     injectJs : function (source, uri) {
-        let isCoffeeScript = uri.endsWith(".coffee");
-
-        if (source.startsWith("#!") && !isCoffeeScript) {
+        if (source.startsWith("#!")) {
             source = "//" + source;
-        }
-
-        if (isCoffeeScript) {
-            if (!coffeeScriptSandbox) {
-                throw new Error ("Sorry, CoffeeScript is disabled");
-            }
-            coffeeScriptSandbox.source = source
-            let src = "this.CoffeeScript.compile(this.source);";
-            source = Cu.evalInSandbox(src, coffeeScriptSandbox, 'ECMAv5', 'slLauncher::injectJs', 1);
         }
 
         let sandbox = mainLoader.sandboxes[mainLoader.main.uri];
@@ -276,10 +246,6 @@ function prepareLoader(scriptInfo) {
 
     for(let i in nativeMapping) {
         pathsMapping[i] = nativeMapping[i];
-    }
-
-    if (slConfiguration.enableCoffeeScript) {
-        pathsMapping['@coffee-script/'] = 'resource://slimerjs/coffee-script/lib/coffee-script/';
     }
 
     if (!scriptInfo.isFile) {

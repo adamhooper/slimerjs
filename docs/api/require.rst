@@ -53,7 +53,7 @@ You can then call this function in an other module, like any native function
 require.extensions
 ------------------
 
-SlimerJS supports natively Javascript files, Coffee-Script files and JSON files, with the
+SlimerJS supports natively Javascript files and JSON files, with the
 require function.
 
 If you want to support scripts written in an other language (that can be compiled into

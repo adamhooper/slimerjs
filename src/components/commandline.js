@@ -153,7 +153,6 @@ var webDriverScriptHandler = {
         }
 
         slConfiguration.args.push("--logLevel="+slConfiguration.webdriverLogLevel);
-        slConfiguration.enableCoffeeScript = false;
     }
 }
 
