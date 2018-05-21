@@ -1,3 +1,12 @@
+**Stripped to the minimum**
+
+*This is a stripped-down version of SlimerJS. Its sole purpose is to convert
+HTML to PDF: any features that don't advance that cause are bugs.*
+
+Why? Because we've seen segmentation faults, and we don't know why. We'll 1.
+remove everything we aren't using; 2. reproduce the segmentation fault; 3.
+debug.
+
 # SlimerJS
 http://slimerjs.org/
 
