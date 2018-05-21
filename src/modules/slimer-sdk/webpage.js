@@ -1541,8 +1541,6 @@ function _create(parentWebpageInfo) {
 
         onConsoleMessage : null,
 
-        onFilePicker : null,
-
         onPrompt : null,
         
         onLongRunningScript : null,

@@ -100,7 +100,6 @@ Content management:
 :ref:`onCallback <webpage-onCallback>`,
 :ref:`onConfirm <webpage-onConfirm>`,
 :ref:`onConsoleMessage <webpage-onConsoleMessage>`,
-:ref:`onFilePicker <webpage-onFilePicker>`,
 :ref:`onFileDownload <webpage-onFileDownload>`,
 :ref:`onFileDownloadError <webpage-onFileDownloadError>`,
 :ref:`onPrompt <webpage-onPrompt>`
@@ -1107,10 +1106,6 @@ Arguments are the CSS selector (in `the current frame <../manual/frames-manipula
 of the input element, and the full path of the file. The file must exist. You can also
 indicate an array of path, if the input element accepts several files.
 
-Note that a virtual file picker is opened when calling ``uploadFile()``, and
-so the ``onFilePicker`` callback is called. If this callback exists and
-returns a filename, the filename given to ``uploadFile()`` is ignored.
-
 
 Callbacks
 ==========
@@ -1325,19 +1320,6 @@ onFileDownloadError
 
 This function is called when an error appears when downloading file.
 It receives the error message.
-
-
-.. _webpage-onFilePicker:
-
-onFilePicker
------------------------------------------
-
-This callback is called when the browser needs to open a file picker.
-This is the case when a click is made on an ``<input type="file">`` element.
-
-The callback receives the previous selected file, and should return
-the path of the new selected file. If the target element accepts
-several files, you can return an array of file path.
 
 .. _webpage-onInitialized:
 

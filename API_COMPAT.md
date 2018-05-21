@@ -239,7 +239,6 @@ It will contain API that does not exists in PhantomJS.
     <tr><td>onConfirm                           </td><td>Implemented</td></tr>
     <tr><td>onConsoleMessage                    </td><td>Implemented (SlimerJS only: the callback receives the lineNumber and the sourceID, contrary to PhantomJS)</td></tr>
     <tr><td>onError                             </td><td>Implemented (SlimerJS issue: For errors from the webpage directly, the stack is not available..)</td></tr>
-    <tr><td>onFilePicker                        </td><td>Implemented</td></tr>
     <tr><td>onInitialized                       </td><td>Implemented</td></tr>
     <tr><td>onFileDownload                      </td><td>Implemented<br>SlimerJS only</td></tr>
     <tr><td>onFileDownloadError                 </td><td>Implemented<br>SlimerJS only</td></tr>

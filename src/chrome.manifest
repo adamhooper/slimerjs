@@ -14,9 +14,6 @@ component {4e2fc2ea-f8b9-456b-a421-71039eb8dcd0} components/callPhantom.js
 contract @slimerjs.org/callphantom;1 {4e2fc2ea-f8b9-456b-a421-71039eb8dcd0}
 category JavaScript-global-property callPhantom @slimerjs.org/callphantom;1
 
-component {4d447d76-5205-4685-9237-9a35c7349adf} components/filePicker.js
-contract @mozilla.org/filepicker;1 {4d447d76-5205-4685-9237-9a35c7349adf}
-
 component {04c5992d-c6a5-4138-9b75-b03ead2be0f1} components/helperAppDialog.js
 contract @mozilla.org/helperapplauncherdialog;1 {04c5992d-c6a5-4138-9b75-b03ead2be0f1}
 
