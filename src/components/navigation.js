@@ -52,19 +52,6 @@ Navigation.prototype = {
             return result;
         }
 
-        // call the navigationRequest callback
-        // before Fx53: aMimeTypeGuess was always empty
-        // between Fx53-Fx56 : shouldLoad is called twice for each url, on time with  aMimeTypeGuess, one time without
-        // since Fx57 : shouldLoad is again called only one time per URL. For the main page, without aMimeTypeGuess, for subpage, with  aMimeTypeGuess
-        if (geckoMajorVersion < 53  || geckoMajorVersion > 56 || !aMimeTypeGuess) {
-            webpage.navigationRequested(aContentLocation.spec, navtype, !webpage.navigationLocked,
-                (Ci.nsIContentPolicy.TYPE_DOCUMENT == aContentType));
-        }
-
-        // if the navigation request is blocked, refuse the content
-        if (webpage.navigationLocked) {
-            result = Ci.nsIContentPolicy.REJECT_REQUEST;
-        }
         return result;
     },
 

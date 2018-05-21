@@ -247,7 +247,6 @@ It will contain API that does not exists in PhantomJS.
     <tr><td>onLoadFinished                      </td><td>Implemented<br>SlimerJS only: the callback receives 3 parameters: the status ("success" or "fail"), the url and true if this is a frame that is loaded</td></tr>
     <tr><td>onLoadStarted                       </td><td>Implemented<br>SlimerJS only: the callback receives 2 parameters: the url and true if this is a frame that is loaded</td></tr>
     <tr><td>onLongRunningScript                 </td><td>Implemented (phjs 2.0)</td></tr>
-    <tr><td>onNavigationRequested               </td><td>Implemented.<br>SlimerJS issue: navigationType is always "Undefined" and isMainFrame is irrelevant</td></tr>
     <tr><td>onPageCreated                       </td><td>Implemented</td></tr>
     <tr><td>onPrompt                            </td><td>Implemented</td></tr>
     <tr><td>onRepaintRequested                  </td><td>(phjs 2.0)</td></tr>
@@ -267,7 +266,6 @@ Methods that send signals (private methods):
     <tr><td>javaScriptConsoleMessageSent(message)</td><td>Implemented</td></tr>
     <tr><td>loadFinished(status)                </td><td>Implemented</td></tr>
     <tr><td>loadStarted()                       </td><td>Implemented</td></tr>
-    <tr><td>navigationRequested(url, navigationType, navigationLocked, isMainFrame)</td><td>Implemented</td></tr>
     <tr><td>rawPageCreated(page)                </td><td>Implemented</td></tr>
     <tr><td>repaintRequested()                    </td><td>(phjs 2.0)</td></tr>
     <tr><td>resourceError(resourceError)        </td><td>Implemented</td></tr>

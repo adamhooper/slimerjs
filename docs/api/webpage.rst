@@ -145,7 +145,6 @@ Internal methods to trigger callbacks:
 :ref:`javaScriptConsoleMessageSent() <webpage-javaScriptConsoleMessageSent>`,
 :ref:`loadFinished() <webpage-loadFinished>`,
 :ref:`loadStarted() <webpage-loadStarted>`,
-:ref:`navigationRequested() <webpage-navigationRequested>`,
 :ref:`rawPageCreated() <webpage-rawPageCreated>`,
 :ref:`resourceError() <webpage-resourceError>`,
 :ref:`resourceReceived() <webpage-resourceReceived>`,

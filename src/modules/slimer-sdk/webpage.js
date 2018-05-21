@@ -1284,8 +1284,6 @@ function _create(parentWebpageInfo) {
                 url = uri.spec;
             }
 
-            this.navigationRequested(url, 'Other', true, true);
-
             if ((typeof content) != "string") {
                 // for given DOM node, serialize it
                 let encoder = Cc["@mozilla.org/layout/documentEncoder;1?type=text/html"]
