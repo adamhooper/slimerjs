@@ -1193,34 +1193,6 @@ function _create(parentWebpageInfo) {
         },
 
         /**
-         * FIXME: modifying a variable in a sandbox
-         * that inherits of the context of a window,
-         * does not propagate the modification into
-         * this context. We have same
-         * issue that https://bugzilla.mozilla.org/show_bug.cgi?id=783499
-         * the only solution is to do window.myvariable = something in the
-         * given function, instead of myvariable = something
-         */
-        injectJs: function(filename) {
-            if (!browser) {
-                throw new Error("WebPage not opened");
-            }
-            let f = slUtils.getAbsMozFile(filename, slUtils.workingDirectory);
-            if (!f.exists()) {
-                // filename resolved against the libraryPath property
-                f = slUtils.getAbsMozFile(filename, libPath);
-                if (!f.exists()) {
-                    dump("Error injectJs: can't open '"+filename+"'\n");
-                    return false;
-                }
-            }
-            let source = slUtils.readSyncStringFromFile(f);
-            evalInSandbox(source, filename);
-            return true;
-        },
-
-        
-        /**
          * Stop JavaScript within a onLongRunningScript callback.
          * Called outside of onLongRunningScript it does nothing. 
          */

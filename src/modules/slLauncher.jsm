@@ -115,21 +115,6 @@ var slLauncher = {
         }
     },
 
-    injectJs : function (source, uri) {
-        if (source.startsWith("#!")) {
-            source = "//" + source;
-        }
-
-        let sandbox = mainLoader.sandboxes[mainLoader.main.uri];
-
-        let evalOptions =  {
-          version : mainLoader.javascriptVersion,
-          source: source
-        }
-        Loader.evaluate(sandbox, uri, evalOptions);
-        return true;
-    },
-
     showError : function(e, fileURI) {
         if (('name' in e && e.name == 'FatalError') || !this.errorHandler)
             throw e;

@@ -22,9 +22,6 @@ your owns modules.
 So to execute something, to use some APIs, most of time you'll have to *import*
 modules into your script, with ``require()``.
 
-Another way to use objects of an other script, is to *inject*
-it into your script.
-
 
 Modules
 =======
@@ -103,20 +100,3 @@ the window object.
 
 Of course, you have access to other Javascript native objects like ``Date``, ``RegExp``,
 ``Math``, ``console``...
-
-Injecting scripts
-=================
-
-.. index:: include, injectJs
-
-If you want to *include* a script (that is not a module), into a module,
-you have to use ``phantom.injectJs(aFileName)``. Remember, the main script is considered as a module.
-
-The indicated path should be relative to the main script directory, or it can be
-an absolute path of course. You can change the default directory by setting the
-path of the new directory to ``phantom.libraryPath``.
-
-The injected script is then executed into the context of the current module
-(into the sandbox of the module), as if it is part of the module. It has then access to all
-variables and functions defined by the module.
-

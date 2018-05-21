@@ -81,7 +81,6 @@ of behaviors in the APIs implementation and in the web platform.
     <tr><td>debugExit(returnValue)              </td><td>Implemented</td></tr>
     <tr><td>exit(returnValue)                   </td><td>Implemented</td></tr>
     <tr><td>fullyDecodeUrl(url)                 </td><td>Implemented (phjs 2.1)</td></tr>
-    <tr><td>injectJs(filename)                  </td><td>Implemented</td></tr>
     <tr><td>loadModule(moduleSource, filename)  </td><td></td></tr>
     <tr><td>onerror(msg, trace)                 </td><td>Implemented</td></tr>
     <tr><td>proxy()                             </td><td>Implemented (phjs 2.1)</td></tr>
@@ -196,7 +195,6 @@ It will contain API that does not exists in PhantomJS.
     <tr><td>go(index)                           </td><td>Implemented</td></tr>
     <tr><td>goBack()                            </td><td>Implemented</td></tr>
     <tr><td>goForward()                         </td><td>Implemented</td></tr>
-    <tr><td>injectJs(filename)                  </td><td>Implemented</td></tr>
     <tr><td>open(url)                           </td><td>Implemented. SlimerJS only: it returns a promise</td></tr>
     <tr><td>open(url, callback)                 </td><td>Implemented. SlimerJS only: it returns a promise</td></tr>
     <tr><td>open(url, httpConf)                 </td><td>Implemented. SlimerJS only: it returns a promise. Only GET and POST method are supported.</td></tr>

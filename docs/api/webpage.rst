@@ -108,7 +108,6 @@ Javascript execution:
 :ref:`evaluateJavaScript() <webpage-evaluateJavaScript>`,
 :ref:`evaluate() <webpage-evaluate>`,
 :ref:`evaluateAsync() <webpage-evaluateAsync>`,
-:ref:`injectJs() <webpage-injectJs>`,
 :ref:`stopJavaScript() <webpage-stopJavaScript>`
 
 :ref:`onLongRunningScript <webpage-onLongRunningScript>`,
@@ -743,25 +742,6 @@ goForward()
 -----------------------------------------
 
 Displays the next page in the navigation history.
-
-.. _webpage-injectJs:
-
-injectJs(filename)
------------------------------------------
-
-It loads and executes the given javascript file into
-the context of the current web page. If `a frame is selected <../manual/frames-manipulation.html>`_,
-the file is executed into this frame.
-
-If the given filename is a relative path, SlimerJS tries
-to resolve the full path from the current working directory
-(that is the directory from which SlimerJS has been launched).
-If the file is not found, SlimerJS tries to resolve with
-the libraryPath.
-
-Note: there is a limitation in SlimerJS. If the loaded script
-wants to modify a variable of the current web page/frame, it should
-call ``window.myvariable = '..'`` instead of ``myvariable = '..'``.
 
 .. _webpage-stopJavaScript:
 
