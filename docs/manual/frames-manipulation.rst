@@ -77,7 +77,6 @@ And you can evaluate javascript in the current frame with
 `evaluateJavaScript() <../api/webpage.html#webpage-evaluatejavadcript>`_,
 `evaluate() <../api/webpage.html#webpage-evaluate>`_,
 `evaluateAsync() <../api/webpage.html#webpage-evaluateasync>`_,
-`includeJs() <../api/webpage.html#webpage-includejs>`_ or
 `injectJs() <../api/webpage.html#webpage-injectjs>`_
 
 

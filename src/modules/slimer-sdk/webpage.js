@@ -1184,16 +1184,6 @@ function _create(parentWebpageInfo) {
             }, timeMs)
         },
 
-        includeJs: function(url, callback) {
-            if (!browser)
-                throw new Error("WebPage not opened");
-            var win = getCurrentFrame();
-            if (!win){
-                throw new Error("No window available");
-            }
-            webpageUtils.evalInWindow (win, null, url, callback);
-        },
-
         get libraryPath () {
             if (!libPath)
                 return "";

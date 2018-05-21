@@ -19,35 +19,6 @@ Cu.import("resource://gre/modules/NetUtil.jsm");
 var webpageUtils = {
 
     /**
-     * evaluate a script directly into the content window
-     * @see onLoadFinished, onFrameLoadFinished, to inject phantomjs callback
-     * @see webpage.setContent(), webpage.setFrameContent(), webpage.includeJs()
-     */
-    evalInWindow : function (win, source, url, callback) {
-        // we don't use the sandbox, because with it, scripts
-        // of the loaded page cannot access to variables/functions
-        // created by the injected script. And this behavior
-        // is necessary to be compatible with phantomjs.
-        let doc = win.document;
-        let script = doc.createElement('script');
-        script.setAttribute('type', 'text/javascript');
-        if (url) {
-            script.setAttribute('src', url);
-            if (callback) {
-                let listener = function(event){
-                    script.removeEventListener('load', listener, true);
-                    callback();
-                }
-                script.addEventListener('load', listener, true);
-            }
-        }
-        else {
-            script.textContent = source;
-        }
-        doc.documentElement.appendChild(script);
-    },
-
-    /**
      * says if the given outer window id is the ID of the window
      * of the webpage or the window of an iframe of the webpage
      */
@@ -111,34 +82,6 @@ var webpageUtils = {
         if (stop)
             return null;
         return win;
-    },
-
-    /**
-     * ugly hack to wait after click processing.
-     * Gecko loads the URI of a <a> element, in an asynchronous manner.
-     * This is very annoying when this is a "javascript:" uri, because
-     * after executing sendEvent, the developer expect that the javascript
-     * is executed (this is the behavior in PhantomJS). Unfortunately, this
-     * is not the case. So let's wait a bit before continuing the execution.
-     */
-    sleepIfJavascriptURI : function(domWindowUtils, x, y) {
-        var target = domWindowUtils.elementFromPoint(x, y, true, false);
-        if (!target || target.localName.toLowerCase() != 'a') {
-            return;
-        }
-        var attribute = target.getAttribute('href');
-        if (!attribute) {
-            return;
-        }
-        if (!attribute.startsWith('javascript:')) {
-            return;
-        }
-        let ready = false;
-        let timer = Cc["@mozilla.org/timer;1"].createInstance(Ci.nsITimer);
-        timer.initWithCallback(function(){ready = true;}, 500, timer.TYPE_ONE_SHOT);
-        let thread = Services.tm.currentThread;
-        while (!ready)
-            thread.processNextEvent(true);
     },
 
     /**

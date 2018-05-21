@@ -111,7 +111,6 @@ Javascript execution:
 :ref:`evaluateJavaScript() <webpage-evaluateJavaScript>`,
 :ref:`evaluate() <webpage-evaluate>`,
 :ref:`evaluateAsync() <webpage-evaluateAsync>`,
-:ref:`includeJs() <webpage-includeJs>`,
 :ref:`injectJs() <webpage-injectJs>`,
 :ref:`stopJavaScript() <webpage-stopJavaScript>`
 
@@ -756,18 +755,6 @@ goForward()
 -----------------------------------------
 
 Displays the next page in the navigation history.
-
-
-.. _webpage-includeJs:
-
-includeJs(url, callback)
------------------------------------------
-
-It loads into the current web page, the javascript file stored
-at the given url. If `a frame is selected <../manual/frames-manipulation.html>`_,
-the file is loaded into this frame.
-
-When the load is done, the given callback is called.
 
 .. _webpage-injectJs:
 

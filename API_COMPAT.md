@@ -197,7 +197,6 @@ It will contain API that does not exists in PhantomJS.
     <tr><td>go(index)                           </td><td>Implemented</td></tr>
     <tr><td>goBack()                            </td><td>Implemented</td></tr>
     <tr><td>goForward()                         </td><td>Implemented</td></tr>
-    <tr><td>includeJs(url, callback)            </td><td>implemented</td></tr>
     <tr><td>injectJs(filename)                  </td><td>Implemented</td></tr>
     <tr><td>open(url)                           </td><td>Implemented. SlimerJS only: it returns a promise</td></tr>
     <tr><td>open(url, callback)                 </td><td>Implemented. SlimerJS only: it returns a promise</td></tr>
