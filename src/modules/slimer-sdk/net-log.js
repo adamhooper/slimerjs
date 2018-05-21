@@ -926,13 +926,6 @@ ProgressListener.prototype = {
             return null;
         }
         try {
-            if(notificationCallbacks.getInterface(Ci.nsIXMLHttpRequest)) {
-                // ignore requests from XMLHttpRequest
-                return null;
-            }
-        }
-        catch(e) { }
-        try {
             return notificationCallbacks.getInterface(Ci.nsILoadContext);
         }
         catch (e) {}
