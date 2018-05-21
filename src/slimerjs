@@ -72,8 +72,6 @@ function showHelp() {
     echo "  --ssl-protocol=[SSLv3|TLSv1|TLSv1.0|TLSv1.1|TLSv1.2|TLS|any]   Indicates the ssl protocol to use."
     #echo "  --web-security=<bool>              Enables web security (default is yes)"
     echo "  --version or -v                    Prints out SlimerJS version"
-    echo "  --error-log-file=<file>            Log all javascript errors in a file"
-    echo "  -jsconsole                         Open a window to view all javascript errors"
     echo "                                       during the execution"
     echo ""
     echo "*** About profiles: see details of these Mozilla options at"

@@ -58,7 +58,6 @@ SlimerJS has some specific options. Some of them are `options of Firefox <https:
 Options specific to SlimerJS
 =============================================  ==============  ========================================================================
 ``--error-log-file=file``                       Supported        stores all JS errors in the given log file
-``-jsconsole``                                  Supported        Open `the error console <https://developer.mozilla.org/en-US/docs/Error_Console>`_ that displays all javascript errors, warning, notices...
 ``-P name``                                     Supported        Use the indicated profile
 ``-CreateProfile name``                         Supported        Create a new profile
 ``-profile path``                               Supported        Use the given directory as a profile
@@ -129,12 +128,11 @@ a configuration parameter with a de-dashed and camel-cased name.
 
     {
         "loadImages":true,
-        "errorLogFile":"error2.log",
         "maxDiskCacheSize": 123
     }
 
 Some options are not supported in the configuration file, since they are processed before
-the execution of the core of SlimerJS: ``--help``, ``--version``, ``-jsconsole``, ``-P``, ``-CreateProfile``, ``-profile``,
+the execution of the core of SlimerJS: ``--help``, ``--version``, ``-P``, ``-CreateProfile``, ``-profile``,
 
 Options in your script
 ======================

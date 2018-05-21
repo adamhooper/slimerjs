@@ -9,7 +9,6 @@ const Cu = Components.utils;
 const Cc = Components.classes;
 const Ci = Components.interfaces;
 
-Cu.import('resource://slimerjs/slErrorLogger.jsm');
 Cu.import('resource://slimerjs/slUtils.jsm');
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import('resource://slimerjs/slDebug.jsm');
@@ -39,7 +38,6 @@ var availableProxyType = { 'auto':true, 'system':true, 'http':true, 'socks5':tru
 var optionsSpec = {
     // name: [ 'cmdline option name', 'parser function name', 'default value',  supported],
     allowMedia: ['allow-media', 'bool', true, true],
-    errorLogFile: ['error-log-file', 'file', '', true],
     diskCacheEnabled : ['disk-cache', 'bool', true, true],
     maxDiskCacheSize : ['max-disk-cache-size', 'int', -1, true],
     ignoreSslErrors : ['ignore-ssl-errors', 'bool', false, false],
@@ -174,24 +172,9 @@ var slConfiguration = {
                 this[opt] = defaultValue;
         }
 
-        let jsConsole = cmdline.handleFlag("jsconsole", false);
-        if (jsConsole) {
-            let { XulApp } = Cu.import("resource://slimerjs/addon-sdk/xul-app.jsm", {});
-            if (XulApp.satisfiesVersion(XulApp.platformVersion, '>=50.0')) {
-                dump(
-                    'Warning: jsconsole parameter does not work when using Firefox 50+ because the Error Console has ' +
-                    'been removed from the Firefox toolkit package so it is no longer available for XUL apps.' + "\n"
-                );
-            }
-        }
-
         let configFile = cmdline.handleFlagWithParam("config", false);
         if (configFile) {
             this.handleConfigFile(configFile);
-        }
-
-        if (this.errorLogFile) {
-            initErrorLogger(this.errorLogFile, this.workingDirectory);
         }
 
         let profd = Services.dirsvc.get("ProfD", Ci.nsIFile);
@@ -465,7 +448,6 @@ var slConfiguration = {
     },
 
     allowMedia: true,
-    errorLogFile : '',
     diskCacheEnabled : true,
     maxDiskCacheSize : -1,
     ignoreSslErrors : false,

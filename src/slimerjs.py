@@ -92,8 +92,6 @@ def showHelp():
     print("  --ssl-protocol=[SSLv3|TLSv1|TLSv1.0|TLSv1.1|TLSv1.2|TLS|any]   Indicates the ssl protocol to use.")
     #print("  --web-security=<bool>              Enables web security (default is yes)")
     print("  --version or v                     Prints out SlimerJS version")
-    print("  --error-log-file=<file>            Log all javascript errors in a file")
-    print("  -jsconsole                         Open a window to view all javascript errors")
     print("                                       during the execution")
     print("")
     print("*** About profiles: see details of these Mozilla options at")
