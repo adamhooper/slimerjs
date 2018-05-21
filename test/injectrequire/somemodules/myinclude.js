@@ -1,2 +1,0 @@
-
-exports.myinclude = "ok";

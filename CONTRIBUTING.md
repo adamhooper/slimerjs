@@ -1,3 +1,10 @@
+DO NOT CONTRIBUTE
+=================
+
+This is a destructive fork. Contribute to SlimerJS instead, at:
+https://github.com/slimerjs/slimerjs
+
+The original content of CONTRIBUTING.md follows:
 
 How to fill an issue
 ====================
