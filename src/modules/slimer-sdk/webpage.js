@@ -1540,11 +1540,6 @@ function _create(parentWebpageInfo) {
         //This callback is invoked when the URL changes, e.g. as it navigates away from the current URL.
         onUrlChanged : null,
 
-        // Callback invoked when a file is downloaded .
-        onFileDownload : null,
-
-        onFileDownloadError: null,
-
         // -------------------------------- private methods to send some events
         closing:function (page) {
             executePageListener(this, 'onClosing', [page]);
@@ -1629,20 +1624,6 @@ function _create(parentWebpageInfo) {
             webPageSandbox = null;
             executePageListener(this, 'onUrlChanged', [url]);
         },
-
-        fileDownload : function(url, responseData) {
-            if (DEBUG_WEBPAGE_LOADING) {
-                slDebugLog("webpage: onFileDownload "+url);
-            }
-            return executePageListener(this, 'onFileDownload', [url, responseData]);
-        },
-
-        fileDownloadError : function(message) {
-            if (DEBUG_WEBPAGE_LOADING) {
-                slDebugLog("webpage: onFileDownloadError: "+message);
-            }
-            executePageListener(this, 'onFileDownloadError', [message]);
-        }
     };
 
     function executePageListener(page, listener, args) {

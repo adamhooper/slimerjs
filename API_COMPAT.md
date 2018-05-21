@@ -186,8 +186,6 @@ It will contain API that does not exists in PhantomJS.
     <tr><td>onConsoleMessage                    </td><td>Implemented (SlimerJS only: the callback receives the lineNumber and the sourceID, contrary to PhantomJS)</td></tr>
     <tr><td>onError                             </td><td>Implemented (SlimerJS issue: For errors from the webpage directly, the stack is not available..)</td></tr>
     <tr><td>onInitialized                       </td><td>Implemented</td></tr>
-    <tr><td>onFileDownload                      </td><td>Implemented<br>SlimerJS only</td></tr>
-    <tr><td>onFileDownloadError                 </td><td>Implemented<br>SlimerJS only</td></tr>
     <tr><td>onLoadFinished                      </td><td>Implemented<br>SlimerJS only: the callback receives 3 parameters: the status ("success" or "fail"), the url and true if this is a frame that is loaded</td></tr>
     <tr><td>onLoadStarted                       </td><td>Implemented<br>SlimerJS only: the callback receives 2 parameters: the url and true if this is a frame that is loaded</td></tr>
     <tr><td>onLongRunningScript                 </td><td>Implemented (phjs 2.0)</td></tr>
@@ -216,14 +214,6 @@ Methods that send signals (private methods):
     <tr><td>resourceReceived(request)           </td><td>Implemented</td></tr>
     <tr><td>resourceRequested(resource)         </td><td>Implemented</td></tr>
     <tr><td>urlChanged(url)                     </td><td>Implemented</td></tr>
-</table>
-
-## Data object received by onFileDownload
-
-<table>
-    <tr><td>filename                            </td><td>Implemented </td></tr>
-    <tr><td>size                                </td><td>Implemented</td></tr>
-    <tr><td>contentType                         </td><td>Implemented</td></tr>
 </table>
 
 ## resourceError object received by onResourceError

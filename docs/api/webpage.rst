@@ -99,8 +99,6 @@ Content management:
 :ref:`onAuthPrompt <webpage-onAuthPrompt>`,
 :ref:`onConfirm <webpage-onConfirm>`,
 :ref:`onConsoleMessage <webpage-onConsoleMessage>`,
-:ref:`onFileDownload <webpage-onFileDownload>`,
-:ref:`onFileDownloadError <webpage-onFileDownloadError>`,
 :ref:`onPrompt <webpage-onPrompt>`
 
 Javascript execution:
@@ -1248,24 +1246,6 @@ the error message and the stack trace (an array of objects indicating the file, 
     page.onError = function(message, stack) {
         
     };
-
-.. _webpage-onFileDownload:
-
-onFileDownload
------------------------------------------
-
-This callback is called when the browser askes to download a file.
-
-The callback receives the url and data and should return
-the path of the new created file.
-
-.. _webpage-onFileDownloadError:
-
-onFileDownloadError
------------------------------------------
-
-This function is called when an error appears when downloading file.
-It receives the error message.
 
 .. _webpage-onInitialized:
 
