@@ -7,6 +7,9 @@ Why? Because we've seen segmentation faults, and we don't know why. We'll 1.
 remove everything we aren't using; 2. reproduce the segmentation fault; 3.
 debug.
 
+The biggest simplification: we don't allow scripts. How could anything go
+wrong? :)
+
 # SlimerJS
 http://slimerjs.org/
 
