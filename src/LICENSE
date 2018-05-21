@@ -17,12 +17,6 @@ their authors under the licenses listed alongside.
     These files comes from Mozilla source code
     http://mxr.mozilla.org/mozilla-central/source/netwerk/test/httpserver/
 
-* components/ConsoleAPI.js
-    is released under the Mozilla Public License, v. 2.0
-    see http://mozilla.org/MPL/2.0/
-    This file comes originally from the source code of Firefox
-    http://mxr.mozilla.org/mozilla-central/source/dom/base/ConsoleAPI.js
-
 * components/DisableAddonManager.js
     is released under the Apache license http://www.apache.org/licenses/LICENSE-2.0
     This file comes originally from https://github.com/mozilla/qbrt
