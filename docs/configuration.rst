@@ -72,7 +72,7 @@ About debug
 -----------
 
 With the ``--debug`` option, SlimerJS displays many messages about what happened during
-the execution of your script: network events, page loading, ``sendEvent`` calls, configuration
+the execution of your script: network events, page loading, configuration
 values, command line parameters..
 
 SlimerJS accepts a value other than true/false/yes/no for ``--debug``. You can indicate what to display.

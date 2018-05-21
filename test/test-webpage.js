@@ -423,18 +423,14 @@ describe("WebPage.content", function(){
 
 describe("WebPage.setContent", function(){
     var webpage;
-    var loadStartUrl = '', loadFinishedUrl = '', navReqUrl = '', navType = '', willNav = null, loadingStatus = null;
-    var loadStartedCalled =false, navRequestedCalled = false, loadFinishedCalled = false;
+    var loadStartUrl = '', loadFinishedUrl = '', loadingStatus = null;
+    var loadStartedCalled =false, loadFinishedCalled = false;
     
     beforeEach(function() {
         loadStartedCalled =true;
-        navRequestedCalled = true;
         loadFinishedCalled = false;
         loadStartUrl = '';
         loadFinishedUrl = '';
-        navReqUrl = '';
-        navType = '';
-        willNav = null;
         loadingStatus = null;
 
         if (webpage) {
@@ -444,12 +440,6 @@ describe("WebPage.setContent", function(){
         webpage.onLoadStarted = function (url, isFrame) {
             loadStartedCalled = true;
             loadStartUrl = url;
-        };
-        webpage.onNavigationRequested = function (url, navigationType, willNavigate, isMainFrame) {
-            navRequestedCalled = true;
-            navReqUrl = url;
-            navType = navigationType;
-            willNav = willNavigate;
         };
         webpage.onLoadFinished = function(status, url, isFrame) {
             loadFinishedCalled = true;
@@ -468,12 +458,8 @@ describe("WebPage.setContent", function(){
         expect(webpage.title).toEqual('An other content #2');
         expect(webpage.evaluate(function(){ return document.body.textContent;})).toEqual("content set with setContent");
         expect(loadStartedCalled).toBeTruthy();
-        expect(navRequestedCalled).toBeTruthy();
-        expect(willNav).toBeTruthy();
         expect(loadStartUrl).toEqual(url);
         expect(loadFinishedUrl).toEqual(url);
-        expect(navReqUrl).toEqual(url);
-        expect(navType).toEqual('Other');
         expect(loadingStatus).toEqual('success');
         expect(webpage.url).toEqual(url);
     });
@@ -499,12 +485,8 @@ describe("WebPage.setContent", function(){
             expect(webpage.url).toEqual(url);
             webpage.close();
             expect(loadStartedCalled).toBeTruthy();
-            expect(navRequestedCalled).toBeTruthy();
-            expect(willNav).toBeTruthy();
             expect(loadStartUrl).toEqual(url);
             expect(loadFinishedUrl).toEqual(url);
-            expect(navReqUrl).toEqual(url);
-            expect(navType).toEqual('Other');
             expect(loadingStatus).toEqual('success');
         });
     });

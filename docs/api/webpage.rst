@@ -31,8 +31,6 @@ Navigation:
 :ref:`goBack() <webpage-goBack>`,
 :ref:`goForward() <webpage-goForward>`
 
-:ref:`onNavigationRequested <webpage-onNavigationRequested>`
-
 Frames and windows management:
 
 :ref:`focusedFrameName <webpage-focusedFrameName>`,
@@ -143,11 +141,6 @@ Network management:
 :ref:`onResourceRequested <webpage-onResourceRequested>`,
 :ref:`onResourceReceived <webpage-onResourceReceived>`,
 :ref:`onResourceTimeout <webpage-onResourceTimeout>`
-
-Page events:
-
-:ref:`event <webpage-event>`,
-:ref:`sendEvent() <webpage-sendEvent>`
 
 Others properties:
 
@@ -290,29 +283,6 @@ To define user agent, prefer to use ``webpage.settings.userAgent``
   credentials for specific hosts.
 - If you want to set headers only for the main request of the web page, use the ``httpConf``
   parameter to the :ref:`open() method <webpage-open>` or the :ref:`openUrl() method <webpage-openurl>`.
-
-
-.. _webpage-event:
-
-event
------------------------------------------
-
-This is an object (read only) that hosts some constants
-to use with ``sendEvent()``.
-
-There is a ``modifier`` property containing constants
-for key modifiers:
-
-.. code-block:: javascript
-
-    page.event.modifier.shift
-    page.event.modifier.ctrl
-    page.event.modifier.alt
-    page.event.modifier.meta
-    page.event.modifier.keypad
-
-There is also a ``key`` property containing constants
-for key codes.
 
 
 .. _webpage-focusedFrameName:
@@ -1148,99 +1118,6 @@ Note: you can use the result to output on the standard output, by setting
     }
 
 
-.. _webpage-sendEvent:
-
-sendEvent(eventType, arg1, arg2, button, modifier)
----------------------------------------------------
-
-It sends hardware-like events to the web page, through the
-browser window, like a user does when he types on a keyboard or
-uses his mouse. Then the browser engine (Gecko) translates these events
-into DOM events into the web page.
-
-So this method does not directly synthesize DOM events. This is why
-you cannot indicate a DOM element as target.
-
-With this method, you can generate keyboard events and mouse events.
-Arguments depends which type of event you want to generate.
-
-The event type is given as the first argument.
-
-**Mouse events**
-
-You should indicate 'mouseup', 'mousedown', 'mousemove', 'doubleclick'
-or 'click' as event type. 
-
-Arguments arg1 and arg2 should represent the mouse position on the window.
-arg1 is the horizontal coordinate (x) and arg2 is the vertical coordinate (y).
-These arguments are optional. In this case, give null as value.
-
-The fourth argument is the pressed button. Indicates 'left', 'middle' or 'right'.
-
-The "modifier" argument is a combination of keyboard modifiers, i.e., a code
-indicating if a key like 'ctrl' or 'alt' is pressed. Codes are available
-on the ``webpage.event.modifier`` object:
-
-- ``webpage.event.modifier.ctrl``
-- ``webpage.event.modifier.shift``
-- ``webpage.event.modifier.alt``
-- ``webpage.event.modifier.meta``
-- ``webpage.event.modifier.keypad``
-
-If no modifiers key, just use 0 as value.
-
-.. code-block:: javascript
-
-    // we send a click with ctrl+shift and the left button
-    var mod = page.event.modifier.ctrl | page.event.modifier.shift;
-    page.sendEvent('click', null, null, 'left', mod);
-
-- with 'mouseup', the web page will receive a mouseup and a click DOM event.
-- with 'mousedown', the web page will receive a mousedown and a click DOM event.
-- with 'mousemove', the web page will receive a simple mousemove DOM event.
-- with 'doubleclick' and 'click', the web page will receive a mousedown
-  and a mouseup DOM events, followed by a click DOM event. And
-  followed by a dblclick DOM event in the case of 'doubleclick'.
-
-The targeted DOM element is the DOM element under the indicated coordinates.
-
-Note that if coordinates are outside the viewport of the window,
-the webpage will not receives DOM events.
-
-**Keyboard events**
-
-You should indicate 'keyup', 'keypress' or 'keydown' as event type.
-
-The second parameter is a key code (from webpage.event.key), or a string
-of one or more characters.
-
-You can also indicate a modifier key as fifth argument. See above for mouse events.
-
-Third and fourth argument are not taken account for keyboard events.
-Just give null for them.
-
-.. code-block:: javascript
-
-    page.sendEvent('keypress', page.event.key.B);
-    page.sendEvent('keypress', "C");
-    page.sendEvent('keypress', "abc");
-    
-    var mod = page.event.modifier.ctrl | page.event.modifier.shift;
-    page.sendEvent('keypress', page.event.key.A, null, null, mod);
-
-When you give a string as a second parameter, if its length is more
-than one character:
-
-- for keyup and keydown, only the first character is used
-- for keypress, it will generates a keydown+keypress+keyup DOM events
-  for each characters.
-
-The targeted DOM element is the DOM element that has the focus.
-
-Note: the DOMEvent.DOM_VK_ENTER key code has been removed in Gecko 30+. So using
-page.event.key.Enter will do nothing (or you receive 0 as key code in your event listener).
-Use page.event.key.Return instead.
-
 .. _webpage-setContent:
 
 setContent(content, url)
@@ -1631,34 +1508,6 @@ implementation is a bit obscure and PhantomJS's documentation does not match the
 behavior. It seems it is called before the onInitialized call, before the
 network process starts. We will try to match the same behavior in future versions.
 
-.. _webpage-onNavigationRequested:
-
-onNavigationRequested
------------------------------------------
-
-This callback is called when a navigation event happens in the page (a click on a link
-or when a form is submitted, for example). It receives these arguments:
-
-- ``url``: The target URL of this navigation event
-- ``type``: indicate where the event comes from. Theorically, possible values are:
-    'Undefined', 'LinkClicked', 'FormSubmitted', 'BackOrForward', 'Reload',
-    'FormResubmitted', 'Other'
-- ``willNavigate``: true if navigation will happen, false if it is locked (by :ref:`navigationLocked <webpage-navigationLocked>`)
-- ``main``: Theorically, true if this event comes from the main frame, false if it comes from an
-   iframe of some other sub-frame.
-
-Because of lack of information in some API of Firefox, SlimerJS cannot give you
-the ``type`` and the ``main`` value. They are always respectively ``'Undefined'`` and ``true``
-
-Example:
-
-.. code-block:: javascript
-
-    page.onNavigationRequested = function(url, type, willNavigate, main) {
-        console.log('Navigate to: ' + url);
-    }
- 
-
 .. _webpage-onPageCreated:
 
 onPageCreated
@@ -1922,14 +1771,6 @@ loadStarted(url, isFrame)
 Call the callback :ref:`onLoadStarted <webpage-onLoadStarted>` with given
 parameters, if the callback has been set.
 
-
-.. _webpage-navigationRequested:
-
-navigationRequested(url, navigationType, willNavigate, isMainFrame)
---------------------------------------------------------------------
-
-Call the callback  :ref:`onNavigationRequested <webpage-onNavigationRequested>` with given
-parameters, if the callback has been set.
 
 .. _webpage-rawPageCreated:
 

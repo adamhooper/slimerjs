@@ -10,8 +10,6 @@ Cu.import('resource://slimerjs/slConsole.jsm');
 Cu.import('resource://slimerjs/slConfiguration.jsm');
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-Cu.import('resource://slimerjs/slPhantomJSKeyCode.jsm');
-Cu.import('resource://slimerjs/slQTKeyCodeToDOMCode.jsm');
 Cu.import('resource://slimerjs/webpageUtils.jsm');
 Cu.import('resource://slimerjs/slCookiesManager.jsm');
 Cu.import('resource://slimerjs/slDebug.jsm');
@@ -1326,148 +1324,6 @@ function _create(parentWebpageInfo) {
                                     browser.docShell, true, privProp.settings.plainTextAllContent);
         },
 
-        sendEvent: function(eventType, arg1, arg2, button, modifier) {
-
-            if (!browser)
-                throw new Error("WebPage not opened");
-
-            eventType = eventType.toLowerCase();
-
-            if (!browser.contentDocument.hasFocus()) {
-                // only set focus if needed, else it can break focus (Gecko 54+) and some keys don't work in inputs
-                browser.contentWindow.focus();
-            }
-            let domWindowUtils = browser.contentWindow
-                                        .QueryInterface(Ci.nsIInterfaceRequestor)
-                                        .getInterface(Ci.nsIDOMWindowUtils);
-            if (modifier) {
-                let  m = 0;
-                let mod = this.event.modifier;
-                if (modifier & mod.shift) m |= domWindowUtils.MODIFIER_SHIFT;
-                if (modifier & mod.alt) m |= domWindowUtils.MODIFIER_ALT;
-                if (modifier & mod.ctrl) m |= domWindowUtils.MODIFIER_CONTROL;
-                if (modifier & mod.meta) m |= domWindowUtils.MODIFIER_META;
-                modifier = m;
-            }
-            else
-                modifier = 0;
-
-            if (eventType == 'keydown' || eventType == 'keyup') {
-                var keyCode = arg1;
-                if ((typeof keyCode) != "number") {
-                    if (keyCode.length == 0)
-                        return;
-                    keyCode = keyCode.charCodeAt(0);
-                }
-
-                let DOMKeyCode = convertQTKeyCode(keyCode);
-                if (DOMKeyCode.modifier && modifier == 0)
-                    modifier = DOMKeyCode.modifier;
-
-                if (DEBUG_WEBPAGE) {
-                    slDebugLog("webpage: sendEvent DOMEvent:"+eventType+" keycode:"+DOMKeyCode.keyCode+" charCode:"+DOMKeyCode.charCode+" mod:"+modifier)
-                }
-                domWindowUtils.sendKeyEvent(eventType, DOMKeyCode.keyCode, DOMKeyCode.charCode, modifier);
-                return;
-            }
-            else if (eventType == 'keypress') {
-                let key = arg1;
-                if (typeof key == "number") {
-                    let DOMKeyCode = convertQTKeyCode(key);
-                    if (DEBUG_WEBPAGE) {
-                        slDebugLog("webpage: sendEvent DOMEvent:keypress keycode:"+DOMKeyCode.keyCode+" charCode:"+DOMKeyCode.charCode+" mod:"+modifier)
-                    }
-                    domWindowUtils.sendKeyEvent("keypress", DOMKeyCode.keyCode, DOMKeyCode.charCode, modifier);
-                }
-                else if (key.length == 1) {
-                    let charCode = key.charCodeAt(0);
-                    let DOMKeyCode = convertQTKeyCode(charCode);
-                    if (DEBUG_WEBPAGE) {
-                        slDebugLog("webpage: sendEvent DOMEvent:keypress keycode:"+DOMKeyCode.keyCode+" charCode:"+charCode+" mod:"+modifier)
-                    }
-                    domWindowUtils.sendKeyEvent("keypress", DOMKeyCode.keyCode, charCode, modifier);
-                }
-                else {
-                    if (DEBUG_WEBPAGE) {
-                        slDebugLog("webpage: sendEvent keydown,keypress,keyup for the string:'"+key+"' mod:"+modifier)
-                    }
-                    for(let i=0; i < key.length;i++) {
-                        let charCode = key.charCodeAt(i);
-                        let DOMKeyCode = convertQTKeyCode(charCode);
-                        domWindowUtils.sendKeyEvent("keydown", DOMKeyCode.keyCode, DOMKeyCode.charCode, modifier);
-                        domWindowUtils.sendKeyEvent("keypress", DOMKeyCode.keyCode, charCode, modifier);
-                        domWindowUtils.sendKeyEvent("keyup", DOMKeyCode.keyCode, DOMKeyCode.charCode, modifier);
-                    }
-                }
-                return;
-            }
-
-            let btn = 0;
-            if (button == 'middle')
-                btn = 1;
-            else if (button == 'right')
-                btn = 2;
-
-            let x = arg1 || 0;
-            let y = arg2 || 0;
-
-            if (DEBUG_WEBPAGE) {
-                slDebugLog("webpage: sendEvent "+eventType+" x:"+x+" y:"+y+" btn:"+btn+" mod:"+modifier)
-            }
-
-            // mouse events
-            if (eventType == "mousedown" ||
-                eventType == "mouseup" ||
-                eventType == "mousemove") {
-                domWindowUtils.sendMouseEvent(eventType,
-                        x, y, btn, 1, modifier);
-                webpageUtils.sleepIfJavascriptURI(domWindowUtils, x, y)
-                return;
-            }
-            else if (eventType == "mousedoubleclick") {
-                // this type allowed by phantomjs has no really equivalence
-                // and tests in phantomjs show that it is simply... buggy
-                // note that is undocumented (2013-02-22)
-                domWindowUtils.sendMouseEvent("mousedown",
-                        x, y, btn, 2, modifier);
-                webpageUtils.sleepIfJavascriptURI(domWindowUtils, x, y)
-                return;
-            }
-            else if (eventType == "doubleclick") {
-                domWindowUtils.sendMouseEvent("mousedown",
-                        x, y, btn, 1, modifier);
-                domWindowUtils.sendMouseEvent("mouseup",
-                        x, y, btn, 1, modifier);
-                domWindowUtils.sendMouseEvent("mousedown",
-                        x, y, btn, 2, modifier);
-                domWindowUtils.sendMouseEvent("mouseup",
-                        x, y, btn, 2, modifier);
-                webpageUtils.sleepIfJavascriptURI(domWindowUtils, x, y)
-                return;
-            }
-            else if (eventType == "click") {
-                domWindowUtils.sendMouseEventToWindow("mousedown",
-                        x, y, btn, 1, modifier);
-                domWindowUtils.sendMouseEventToWindow("mouseup",
-                        x, y, btn, 1, modifier);
-                webpageUtils.sleepIfJavascriptURI(domWindowUtils, x, y)
-                return;
-            }
-
-            throw new Error("Unknown event type");
-        },
-
-        event : {
-            modifier : {
-                shift:  0x02000000,
-                ctrl:   0x04000000,
-                alt:    0x08000000,
-                meta:   0x10000000,
-                keypad: 0x20000000
-            },
-            key : phantomJSKeyCodeList.key // unicode values
-        },
-
         get title() {
             if (!browser) {
                 return '';
@@ -1768,8 +1624,6 @@ function _create(parentWebpageInfo) {
         //This callback is invoked when the page starts the loading. There is no argument passed to the callback.
         onLoadStarted: null,
 
-        onNavigationRequested: null,
-
         // This callback is invoked when a new child window (but not deeper descendant windows) is created by the page, e.g. using window.open
         onPageCreated: null,
 
@@ -1831,21 +1685,6 @@ function _create(parentWebpageInfo) {
                 slDebugLog("webpage: onLoadStarted url:"+url+" isFrame:"+isFrame);
             }
             executePageListener(this, 'onLoadStarted', [url, isFrame]);
-        },
-
-        /**
-         * @param string url  the url of the requested page
-         * @param string navigationType a string indicated the origin:
-         *          "Undefined" "LinkClicked" "FormSubmitted" "BackOrForward" "Reload" "FormResubmitted" "Other"
-         * @param boolean willNavigate  true if the navigation is not locked
-         * @param boolean isMainFrame true if it comes from the mainFrame
-         */
-
-        navigationRequested: function(url, navigationType, willNavigate, isMainFrame) {
-            if (DEBUG_WEBPAGE_LOADING) {
-                slDebugLog("webpage: onNavigationRequested url:"+url+" navigationType:"+navigationType+" willNavigate:"+willNavigate+" isMainFrame:"+isMainFrame);
-            }
-            executePageListener(this, 'onNavigationRequested', [url, navigationType, willNavigate, isMainFrame]);
         },
 
         rawPageCreated: function(page) {
