@@ -1,5 +1,9 @@
 .. index:: Installation
 
+This runs only on Linux. Use Docker for bonus points.
+
+Below is the original SlimerJS's installation file....
+
 
 ============
 Installation

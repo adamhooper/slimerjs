@@ -51,18 +51,7 @@ var externalScriptHandler = {
     declareScript : function(cmdLine) {
         let file = null;
         try {
-            if (/Mac/i.test(httphandler.oscpu)) {
-                // under MacOS, resolveFile fails with a relative path
-                try {
-                    file = cmdLine.resolveFile(slConfiguration.args[0]);
-                }
-                catch(e) {
-                    file = slUtils.getAbsMozFile(slConfiguration.args[0], cmdLine.workingDirectory)
-                }
-            }
-            else {
-                file = cmdLine.resolveFile(slConfiguration.args[0]);
-            }
+            file = cmdLine.resolveFile(slConfiguration.args[0]);
         }
         catch(e) {
             throw new Error("script not found");
