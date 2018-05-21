@@ -1002,9 +1002,6 @@ Note: you can use the result to output on the standard output, by setting
     phantom.outputEncoding = 'binary';
     // ....
     let bytes = page.renderBytes({format:'png'})
-    if (bytes) {
-        system.stdout.write(bytes);
-    }
 
 
 .. _webpage-setContent:

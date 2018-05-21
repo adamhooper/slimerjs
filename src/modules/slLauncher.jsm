@@ -191,7 +191,6 @@ const nativeModules = {
     'webpage': '@slimer-sdk/webpage',
     'net-log' : '@slimer-sdk/net-log',
     'webserver' : 'webserver',
-    'system' : '@slimer-sdk/system',
     'chrome': 'chrome',
     'vm':'@slimer-sdk/vm',
     'path':'@slimer-sdk/path',

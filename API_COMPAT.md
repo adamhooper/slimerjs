@@ -12,7 +12,6 @@ of behaviors in the APIs implementation and in the web platform.
 
 <table>
     <tr><td>--config=/path/to/config.json        </td><td>Implemented</td></tr>
-    <tr><td>--cookies-file=/path/to/cookies.txt  </td><td>not applicable. Use profiles instead.</td></tr>
     <tr><td>--debug=[yes|no]                     </td><td>Implemented, but not everything is displayed. With SlimerJS, it accepts also name of what to debug</td></tr>
     <tr><td>--disk-cache=[yes|no]                </td><td>Implemented</td></tr>
     <tr><td>--disk-cache-path                    </td><td>(phjs 2.1)</td></tr>
@@ -49,49 +48,6 @@ of behaviors in the APIs implementation and in the web platform.
     <tr><td>--web-security=[yes|no]              </td><td></td></tr>
     <tr><td>script path                          </td><td>Implemented</td></tr>
     <tr><td>script arguments                     </td><td>Implemented</td></tr>
-</table>
-
-# phantom object
-
-## properties
-
-<table>
-    <tr><td>args                                </td><td>Implemented (deprecated, removed in phjs 2.0)</td></tr>
-    <tr><td>cookies                             </td><td>Implemented</td></tr>
-    <tr><td>cookiesEnabled                      </td><td>Implemented</td></tr>
-    <tr><td>defaultPageSettings                 </td><td>Implemented</td></tr>
-    <tr><td>libraryPath                         </td><td>Implemented (deprecated)</td></tr>
-    <tr><td>outputEncoding                      </td><td>Implemented (with support of special value 'binary' for system.stdout, Slimerjs only)</td></tr>
-    <tr><td>page                                </td><td>Not implemented. Irrelevant for SlimerJS</td></tr>
-    <tr><td>remoteDebugPort                     </td><td>(phjs 2.1)</td></tr>
-    <tr><td>scriptName                          </td><td>Implemented (deprecated, removed in phjs 2.0)</td></tr>
-    <tr><td>version                             </td><td>Implemented. Gives the PhantomJS version which is compatible to
-                                                        the SlimerJS implementation.</td></tr>
-    <tr><td>webdriverMode                       </td><td>Implemented</td></tr>
-    <tr><td>aboutToExit                        </td><td>Implemented</td></tr>
-</table>
-
-## methods
-
-<table>
-    <tr><td>addCookie(cookie)                   </td><td>Implemented</td></tr>
-    <tr><td>clearCookies()                      </td><td>Implemented</td></tr>
-    <tr><td>defaultErrorHandler(message, stack) </td><td>Implemented</td></tr>
-    <tr><td>deleteCookie(cookieName)            </td><td>Implemented</td></tr>
-    <tr><td>debugExit(returnValue)              </td><td>Implemented</td></tr>
-    <tr><td>exit(returnValue)                   </td><td>Implemented</td></tr>
-    <tr><td>fullyDecodeUrl(url)                 </td><td>Implemented (phjs 2.1)</td></tr>
-    <tr><td>loadModule(moduleSource, filename)  </td><td></td></tr>
-    <tr><td>onerror(msg, trace)                 </td><td>Implemented</td></tr>
-    <tr><td>proxy()                             </td><td>Implemented (phjs 2.1)</td></tr>
-    <tr><td>resolveRelativeUrl(url, base)       </td><td>Implemented (phjs 2.1)</td></tr>
-    <tr>
-        <td>setProxy(host, port, proxyType, user, password)</td>
-        <td>
-            Implemented (phjs 2.0)<br>
-            The first parameter may be a hostname, IP address or auto-config URL (PAC; for config-url proxy type; SlimerJS only).
-        </td>
-    </tr>
 </table>
 
 # slimer object
@@ -131,8 +87,6 @@ It will contain API that does not exists in PhantomJS.
                                                         the content. The content is then set on the body <br>
                                                         property of the response object received by your <br>
                                                         onResourceReceived callback (SlimerJS only)</td></tr>
-    <tr><td>cookies                             </td><td>Implemented (phjs 2.0)</td></tr>
-    <tr><td>cookieJar                             </td><td>(phjs 2.0)</td></tr>
     <tr><td>customHeaders                       </td><td>Implemented</td></tr>
     <tr><td>event                               </td><td>Implemented</td></tr>
     <tr><td>focusedFrameName                    </td><td>Implemented</td></tr>
@@ -180,14 +134,11 @@ It will contain API that does not exists in PhantomJS.
 ## methods
 
 <table>
-    <tr><td>addCookie(Cookie)                   </td><td>Implemented</td></tr>
     <tr><td>childFramesCount()                  </td><td>Implemented. deprecated</td></tr>
     <tr><td>childFramesName()                   </td><td>Implemented. deprecated</td></tr>
-    <tr><td>clearCookies()                      </td><td>Implemented</td></tr>
     <tr><td>clearMemoryCache()                  </td><td>(phjs 2.0)</td></tr>
     <tr><td>close()                             </td><td>Implemented</td></tr>
     <tr><td>currentFrameName()                  </td><td>Implemented. deprecated</td></tr>
-    <tr><td>deleteCookie(cookieName)            </td><td>Implemented</td></tr>
     <tr><td>evaluateJavascript(str)             </td><td>implemented</td></tr>
     <tr><td>evaluate(function, arg1, arg2,...)  </td><td>implemented</td></tr>
     <tr><td>evaluateASync(function, arg1, arg2,...)</td><td>implemented</td></tr>
@@ -212,8 +163,6 @@ It will contain API that does not exists in PhantomJS.
     <tr><td>sendEvent(keyboardEventType, keyOrKeys)</td><td>Implemented</td></tr>
     <tr><td>setContent(content, url)            </td><td>Implemented</td></tr>
 
-    <tr><td>setCookieJar(cookieJar)            </td><td>(phjs 2.0)</td></tr>
-    <tr><td>setCookieJarFromQObject(Qobject)   </td><td>not implemented, irrelevant (phjs 2.0)</td></tr>
     <tr><td>setProxy(url)                       </td><td>(phjs 2.1)</td></tr>
     <tr><td>stop()                              </td><td>Implemented</td></tr>
     <tr><td>stopJavascript()                    </td><td>Implemented (phjs 2.0)</td></tr>
@@ -329,48 +278,6 @@ Methods that send signals (private methods):
     <tr><td>httpVersion                         </td><td>Implemented (SlimerJS only)</td></tr>
     <tr><td>isFileDownloading                   </td><td>Implemented (SlimerJS only)</td></tr>
 
-</table>
-
-## cookieJar object 
-
-<table>
-    <tr><td>cookies                         </td><td>(phjs 2.0)</td></tr>
-    <tr><td>addCookie(cookie)               </td><td>(phjs 2.0)</td></tr>
-    <tr><td>addCookieFromMap(cookie, url)   </td><td>(phjs 2.0)</td></tr>
-    <tr><td>addCookiesFromMap(cookiesList, url)</td><td>(phjs 2.0)</td></tr>
-    <tr><td>cookiesToMap(url)               </td><td>(phjs 2.0)</td></tr>
-    <tr><td>cookieToMap(name, url)          </td><td>(phjs 2.0)</td></tr>
-    <tr><td>deleteCookie(name, url)         </td><td>(phjs 2.0)</td></tr>
-    <tr><td>clearCookies()                  </td><td>(phjs 2.0)</td></tr>
-    <tr><td>close()                         </td><td>(phjs 2.0)</td></tr>
-</table>
-
-# Module: CookieJar
-
-<table>
-    <tr><td>create(path) -> cookieJar         </td><td>(phjs 2.0)</td></tr>
-</table>
-
-
-# Module: system
-
-# System object
-
-## properties
-
-<table>
-    <tr><td>args                                </td><td>Implemented</td></tr>
-    <tr><td>env                                 </td><td>Implemented</td></tr>
-    <tr><td>isSSLSupported                       </td><td></td></tr>
-    <tr><td>os                                  </td><td>Implemented. SlimerJS only: an additional method on this object: isWindows()</td></tr>
-    <tr><td>pid                                 </td><td>Implemented</td></tr>
-    <tr><td>platform                            </td><td>Implemented</td></tr>
-    <tr><td>stdout                               </td><td>Implemented</td></tr>
-    <tr><td>stdin                                </td><td>Implemented</td></tr>
-    <tr><td>stderr                               </td><td>Implemented</td></tr>
-    <tr><td>standardout                          </td><td>Implemented (phjs 2.0)</td></tr>
-    <tr><td>standardin                           </td><td>Implemented (phjs 2.0)</td></tr>
-    <tr><td>standarderr                          </td><td>Implemented (phjs 2.0)</td></tr>
 </table>
 
 # Module: FileSystem
