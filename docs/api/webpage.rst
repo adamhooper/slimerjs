@@ -25,7 +25,6 @@ Navigation:
 
 :ref:`canGoBack <webpage-canGoBack>`,
 :ref:`canGoForward <webpage-canGoForward>`,
-:ref:`navigationLocked <webpage-navigationLocked>`
 
 :ref:`go() <webpage-go>` ,
 :ref:`goBack() <webpage-goBack>`,
@@ -337,14 +336,6 @@ libraryPath
 
 Implemented. Documentation needed.
 
-
-.. _webpage-navigationLocked:
-
-navigationLocked
------------------------------------------
-
-This is a property to lock navigation. If it is ``true``, clicking on a link in
-the web page to load a new page, submitting a form etc, will not have effect.
 
 .. _webpage-offlineStoragePath:
 

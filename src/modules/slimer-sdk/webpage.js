@@ -580,8 +580,6 @@ function _create(parentWebpageInfo) {
             browser.goForward();
         },
 
-        navigationLocked : false,
-
         reload : function() {
             browser.reload();
         },

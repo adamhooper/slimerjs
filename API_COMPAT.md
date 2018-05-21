@@ -147,7 +147,6 @@ It will contain API that does not exists in PhantomJS.
     <tr><td>libraryPath                         </td><td>Implemented</td></tr>
     <tr><td>loading                             </td><td>Implemented</td></tr>
     <tr><td>loadingProgress                     </td><td>Implemented</td></tr>
-    <tr><td>navigationLocked                    </td><td>Implemented</td></tr>
     <tr><td>offlineStoragePath                  </td><td>Implemented</td></tr>
     <tr><td>offlineStorageQuota                 </td><td>Implemented</td></tr>
     <tr><td>ownsPages                           </td><td>Implemented</td></tr>
